@@ -1,0 +1,21 @@
+class Solution {
+    public void recursion(List<List<Integer>>list,List<Integer>al,int k,int target,int ind){
+        if(al.size()==k && target==0){
+            list.add(new ArrayList<>(al));
+            return;
+        }
+        for(int i=ind;i<=9;i++){
+            if(i>target){
+                break;
+            }
+            al.add(i);
+            recursion(list,al,k,target-i,i+1);
+            al.remove(al.size()-1);
+        }
+    }
+    public List<List<Integer>> combinationSum3(int k, int n) {
+        List<List<Integer>> list = new ArrayList<>();
+        recursion(list,new ArrayList<>(),k,n,1);
+        return list;
+    }
+}
